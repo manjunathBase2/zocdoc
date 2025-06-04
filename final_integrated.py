@@ -199,7 +199,10 @@ def main():
             print(f"Scraping: {url}")
             try:
                 driver.get(url)
-                time.sleep(3)
+                time.sleep(3)  # Allow time for the page to load
+                if "Page Not Found" in driver.title:
+                    print("❌ Page not found, skipping...")
+                    continue
 
                 data = scrape_doctor_profile(driver, url)
                 additional = scrape_additional_details(driver, url)
@@ -208,6 +211,7 @@ def main():
                 print("✅ Done")
             except Exception as e:
                 print(f"❌ Failed to scrape {url} due to error: {e}")
+                continue  # Explicitly continue to the next URL
 
         driver.quit()
 
