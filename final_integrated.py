@@ -178,7 +178,7 @@ def scrape_additional_details(driver, url):
     return data
 
 def main():
-    with open("W:\ROCHE\RANDOM\gather\profile_0_links.json", "r") as f:
+    with open("profile_0_links.json", "r") as f:
         urls = json.load(f)
 
     fieldnames = [
